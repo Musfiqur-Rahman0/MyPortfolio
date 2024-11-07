@@ -17,7 +17,6 @@ import { IoLogoDiscord } from "react-icons/io5";
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { TbBrandFramerMotion } from "react-icons/tb";
 import { SiMongodb } from "react-icons/si";
-import { link } from "framer-motion/client";
 
 export const intro =
   "I’m a passionate front-end developer skilled in HTML, CSS, JavaScript, React, and Tailwind CSS, with a focus on creating responsive and visually engaging web applications.";

@@ -37,6 +37,15 @@ const Navbar = () => {
   };
   console.log(selectedSection);
 
+  const downloadFile = (url, filename) => {
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <nav className="fixed top-0 bg-white z-20 shadow-md flex justify-between items-center h-10 lg:h-20 w-full px-5 sm:px-14 py-[2rem]">
       <Link to="/">
@@ -76,6 +85,9 @@ const Navbar = () => {
           initial="initial"
           whileTap="tap"
           whileHover="hover"
+          onClick={() =>
+            downloadFile("/Musfiqur Rahman resume un.pdf", "downloadedFile.pdf")
+          }
           className=" flex items-center gap-2 px-4 py-[6px] bg-black text-white hover:font-semibold"
         >
           Resume

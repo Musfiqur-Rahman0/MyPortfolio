@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useRef } from "react";
 import SocialLinks from "./SocialLinks";
 import { motion } from "framer-motion";
 import { buttonVariants, itemVariant } from "../consents";
+import emailjs from "@emailjs/browser";
 const Form = () => {
-  const handleFormSubmit = (e) => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-    console.log("Form Data:", data);
-
-    e.target.reset();
+    emailjs
+      .sendForm("service_em9bvuq", "template_7saikrf", form.current, {
+        publicKey: "GfkCy4-xZWgE97fKf",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
   };
 
   return (
@@ -19,18 +29,19 @@ const Form = () => {
       initial="hidden"
       whileInView="visible"
       transition={{ duration: 0.8 }}
-      onSubmit={handleFormSubmit}
+      onSubmit={sendEmail}
+      ref={form}
       className="w-full sm:w-1/2 flex flex-col items-center gap-3 sm:gap-5 relative"
     >
       <input
         type="text"
-        name="name"
+        name="to_name"
         placeholder="Your name : "
         className="w-[80%] border border-black px-5 py-1 outline-none rounded-md text-sm"
       />
       <input
         type="email"
-        name="gmail"
+        name="from_name"
         placeholder="Email"
         className="w-[80%] border border-black px-5 py-1 outline-none rounded-md text-sm"
       />
@@ -41,7 +52,7 @@ const Form = () => {
         className="w-[80%] border border-black px-5 py-1 outline-none rounded-md text-sm"
       />
       <textarea
-        name="comment"
+        name="message"
         placeholder="What you Want ? "
         className="w-[80%] h-32 border border-black px-5 py-1 outline-none rounded-md text-sm"
       ></textarea>

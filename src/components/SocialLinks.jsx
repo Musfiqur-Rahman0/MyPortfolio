@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 const SocialLinks = () => {
   const [isHovered, setIsHovered] = useState(null);
 
-  console.log(isHovered);
   return (
     <>
       {socialIcons.map((data, idx) => {
